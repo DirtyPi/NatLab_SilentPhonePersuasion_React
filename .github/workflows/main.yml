@@ -17,6 +17,10 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
       - name: Install dependencies and build
         run: |
           npm install
