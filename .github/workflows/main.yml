@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -24,9 +26,7 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-          
+
       - name: Deploy to Azure Storage
         run: |
           az storage blob upload-batch --account-name natlabgame --source ./build --destination '$web'
-
-
