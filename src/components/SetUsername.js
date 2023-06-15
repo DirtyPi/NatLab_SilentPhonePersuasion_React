@@ -115,7 +115,7 @@ const Username = () => {
   const [isButtonClickable, setIsButtonClickable] = useState(false);
   
   const usernameInputRef = useRef(null);
-  const submitButtonRef = useRef(null);
+  //const submitButtonRef = useRef(null);
 
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
@@ -229,20 +229,21 @@ const Username = () => {
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
-          <label style={{ color: 'white' }}>
-            Type a username:
-            <input type="text" value={username} onChange={handleInputChange} ref={usernameInputRef} />
-          </label>
-          <button
-            type="submit"
-            className={isButtonClickable ? 'setUsernameBtn active' : 'setUsernameBtn'}
-            // ref={submitButtonRef} 
-          >
-            <a href="/quizplayer" style={{ textDecoration: 'none', color: 'black', textDecoration: 'none' }}>
-              Submit
-            </a>
-          </button>
-        </form>
+        <label style={{ color: 'white' }}>
+          Type a username:
+          <input type="text" value={username} onChange={handleInputChange} ref={usernameInputRef} />
+        </label>
+        <button
+          type="submit"
+          className={isButtonClickable ? 'setUsernameBtn active' : 'setUsernameBtn'}
+          // ref={submitButtonRef}
+        >
+          <a href="/quizplayer" style={{color: 'black' }}>
+            Submit
+          </a>
+        </button>
+      </form>
+      
       )}
     </>
   );

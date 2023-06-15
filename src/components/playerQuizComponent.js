@@ -2,8 +2,8 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+//import { styled } from '@mui/material/styles';
+//import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 //import sound from '../sound/Signal.mp3'
 import baseUrl from "../baseUrl";
@@ -53,6 +53,19 @@ function PlayerQuiz() {
   //   setMyVariable(value);
   // };
 
+  // useEffect(() => {
+  //   const fetchQuiz = async () => {
+  //     try {
+  //       const response = await fetch(`${baseUrl}/api/active/quiz/${aquiz._id}/players/username/${myVariable}/userid`);
+  //       const data = await response.json();
+  //       setAquiz(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   fetchQuiz();
+  // }, [quizId]);
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
@@ -63,9 +76,10 @@ function PlayerQuiz() {
         console.log(error);
       }
     };
-
+  
     fetchQuiz();
-  }, [quizId]);
+  }, [aquiz._id, myVariable]);
+  
     const renderTime = ({ remainingTime }) => {
         if (remainingTime === 0) {
           return <div className="timer">Too late...</div>;

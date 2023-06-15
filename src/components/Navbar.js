@@ -6,7 +6,8 @@ const Navbar = () => {
             <div className="container">
                 <Link to='/'>
                     
-                    <img src={image} width="80" height="80"/> 
+                <img src={image} width="80" height="80" alt="Logo" />
+
                 </Link>
             </div>
         </header>
