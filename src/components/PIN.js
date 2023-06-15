@@ -52,7 +52,7 @@ const PIN = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`/api/code/${code}`);
+      const response = await axios.get(`${baseUrl}/api/code/${code}`);
       const activeQuiz = response.data;
       // Redirect to the appropriate page based on the active quiz data
       if (activeQuiz) {

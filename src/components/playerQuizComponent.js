@@ -24,7 +24,7 @@ function PlayerQuiz() {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/active/quiz/code/${quizId}`);
+        const response = await fetch(`${baseUrl}/api/active/quiz/code/${quizId}`);
         const data = await response.json();
         setAquiz(data);
       } catch (error) {
@@ -56,7 +56,7 @@ function PlayerQuiz() {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/active/quiz/${aquiz._id}/players/username/${myVariable}/userid`);
+        const response = await fetch(`${baseUrl}/api/active/quiz/${aquiz._id}/players/username/${myVariable}/userid`);
         const data = await response.json();
         setAquiz(data);
       } catch (error) {

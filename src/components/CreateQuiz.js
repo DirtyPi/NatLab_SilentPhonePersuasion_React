@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import baseUrl from "../baseUrl";
 
 const QuizForm = () => {
   const [quizTitle, setQuizTitle] = useState('');
@@ -88,7 +89,7 @@ const QuizForm = () => {
         questions: formattedQuestions,
       };
 
-      const response = await axios.post('/api/quiz', quizData);
+      const response = await axios.post(`${baseUrl}/api/quiz`, quizData);
 
       console.log('Quiz saved:', response.data);
 

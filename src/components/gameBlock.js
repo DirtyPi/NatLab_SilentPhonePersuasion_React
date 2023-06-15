@@ -122,7 +122,7 @@ function GameBlock() {
   React.useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/quiz/${quizId}`);
+        const response = await fetch(`${baseUrl}/api/quiz/${quizId}`);
         const data = await response.json();
         setQuiz(data);
       } catch (error) {

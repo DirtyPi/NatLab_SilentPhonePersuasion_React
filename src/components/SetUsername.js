@@ -137,7 +137,7 @@ const Username = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/active/quiz/code/${quizId}`);
+        const response = await fetch(`${baseUrl}/api/active/quiz/code/${quizId}`);
         const data = await response.json();
         setQuiz(data);
       } catch (error) {
@@ -185,7 +185,7 @@ const Username = () => {
       console.log(`Username: ${username}`);
 
       try {
-        const response = await fetch(`/api/active/quiz/signin/${secondLastParam}`, {
+        const response = await fetch(`${baseUrl}/api/active/quiz/signin/${secondLastParam}`, {
           method: 'POST',
           body: JSON.stringify({ username }),
           headers: {

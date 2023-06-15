@@ -1,3 +1,3 @@
-const baseUrl = "https://natlab-quiz-test.azurewebsites.net";
+const baseUrl = "https://nat-game.azurewebsites.net";
 
 export default baseUrl;

@@ -19,7 +19,7 @@ const ACC = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/active/quiz/quizid/${quizId}`);
+        const response = await fetch(`${baseUrl}/api/active/quiz/quizid/${quizId}`);
         const data = await response.json();
         setQuiz(data);
       } catch (error) {
@@ -37,7 +37,7 @@ const ACC = () => {
       if (quiz) {
         try {
           // Make the API call to update the gameStarted field
-          const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
+          const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const ACC = () => {
  const startGame = async () => {
   try {
     // Make the API call to update the gameStarted field
-    const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
+    const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

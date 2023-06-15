@@ -7,7 +7,7 @@ function QuizList() {
 
   useEffect(() => {
     const fetchQuizzes = async () => {
-      const response = await fetch(`/api/quiz`);
+      const response = await fetch(`${baseUrl}/api/quiz`);
       const json = await response.json();
 
       if (response.ok) {
