@@ -26,4 +26,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch --source ./build --destination '$web' --type block --connection-string ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+            az storage blob upload-batch --source ./build --destination '$web' --type block --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
