@@ -23,8 +23,7 @@ jobs:
           npm run build
 
       - name: Deploy to Azure Storage
-        uses: azure/storage-blob-upload-batch@v1
+        uses: azure/CLI@v1
         with:
-          connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-          source: ./build
-          destination: '$web'
+          inlineScript: |
+            az storage blob upload-batch --source ./build --destination '$web' --type block --connection-string ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
