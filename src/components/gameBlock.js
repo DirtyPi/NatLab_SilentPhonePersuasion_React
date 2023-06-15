@@ -79,7 +79,7 @@
 // }
 
 // export default gameBlock
-
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 // import React, { useState, useEffect } from 'react';
@@ -169,7 +169,7 @@ function GameBlock() {
             margintop: '25px',
           }}
         >
-          <img src={image} width="500" height="350" />
+          image
         </div> */}
         <div className="idk" style={{ padding: '15px' }}>
           <Grid
