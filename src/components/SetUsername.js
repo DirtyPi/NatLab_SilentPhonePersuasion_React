@@ -131,22 +131,22 @@ const Username = () => {
   const secondLastParam = params[params.length - 1]; // Access the parameter before the last one
 
   // State to store the quiz data
-  const [quiz, setQuiz] = useState(null);
+  const [quiz, setQuiz] = useState(null);// eslint-disable-line no-unused-vars
 
-  // Fetch the quiz data based on the quizId
-  useEffect(() => {
-    const fetchQuiz = async () => {
-      try {
-        const response = await fetch(`${baseUrl}/api/active/quiz/code/${quizId}`);
-         quiz = await response.json();
-        setQuiz(quiz);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+ // Fetch the quiz data based on the quizId
+useEffect(() => {
+  const fetchQuiz = async () => {
+    try {
+      const response = await fetch(`${baseUrl}/api/active/quiz/code/${quizId}`);
+      const data = await response.json();
+      setQuiz(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    fetchQuiz();
-  }, [quizId]);
+  fetchQuiz();
+}, [quizId]);
   useEffect(() => {
     const hasShownPopup = sessionStorage.getItem('hasShownPopup');
     if (!hasShownPopup) {
