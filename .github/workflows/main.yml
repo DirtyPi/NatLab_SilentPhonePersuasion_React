@@ -25,8 +25,11 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.ZURE_STORAGE_CONNECTION_STRING }}
+          creds: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
 
       - name: Deploy to Azure Storage
-        run: |
-          az storage blob upload-batch --account-name natlabgame --source ./build --destination '$web'
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch --account-name natlabgame --source ./build --destination '$web' --connection-string ${{ secrets.ZURE_STORAGE_CONNECTION_STRING }}
+
