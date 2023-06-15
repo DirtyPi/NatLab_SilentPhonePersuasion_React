@@ -11,9 +11,21 @@ const PIN = () => {
   const inputsRef = useRef([]);
   const buttonRef = useRef(null);
   const [code, setCode] = useState("");
-
+  const [quizzes, setQuizzes] = useState([]);
   useEffect(() => {
     inputsRef.current[0].focus();
+  }, []);
+  useEffect(() => {
+    const fetchQuizzes = async () => {
+      const response = await fetch(`${baseUrl}/api/quiz`, cors());
+      const json = await response.json();
+
+      if (response.ok) {
+        setQuizzes(json);
+      }
+    };
+
+    fetchQuizzes();
   }, []);
 
   const handleInput = (e, currentIndex) => {
