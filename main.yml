@@ -1,0 +1,33 @@
+name: Azure Blob Storage Action
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v2.3.4
+
+      - name: 'Setup Node.js environment'
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: '18.x'  
+
+      - name: 'npm install and build'
+        run: |
+          npm install
+          npm run build  # or your build command
+
+      - name: 'Upload to Azure Blob Storage'
+        uses: azure/ [email protected]
+        with:
+          connection_string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          container_name: <container_name>
+          source_dir: 'build'  
+          sync: true
+
