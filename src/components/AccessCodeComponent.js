@@ -72,7 +72,7 @@ const ACC = () => {
       if (quiz) {
         try {
           // Make the API call to update the gameStarted field
-          const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
+          const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -181,7 +181,10 @@ const ACC = () => {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h2 style={{ color: 'white' }}>Scan me</h2>
         </div>
-        <QRCode size={170} value={`SetUsername/${quiz.code}`} />
+        <div style={{ background:'white', padding:'15px' }}>
+           <QRCode size={170} value={`SetUsername/${quiz.code}`} />
+        </div>
+       
       </div>
 {/* 
       Join code

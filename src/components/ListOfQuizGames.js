@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import baseUrl from "../baseUrl";
+import cors from 'cors';
 function QuizList() {
     const navigate = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
     const fetchQuizzes = async () => {
-      const response = await fetch(`${baseUrl}/api/quiz`);
+      const response = await fetch(`${baseUrl}/api/quiz`, cors());
       const json = await response.json();
 
       if (response.ok) {
@@ -20,7 +21,7 @@ function QuizList() {
 
   const handleStartQuiz = (quizId) => {
     // Call the API to start the quiz
-    fetch(`${baseUrl}/api/active/quiz/${quizId}/activate`, { method: 'POST' })
+    fetch(`/api/active/quiz/${quizId}/activate`, { method: 'POST' })
       .then(response => response.json())
       .then(data => {
         console.log(data);

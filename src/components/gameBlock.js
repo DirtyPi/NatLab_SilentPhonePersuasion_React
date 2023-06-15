@@ -122,7 +122,7 @@ function GameBlock() {
   React.useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`${baseUrl}/api/quiz/${quizId}`);
+        const response = await fetch(`/api/quiz/${quizId}`);
         const data = await response.json();
         setQuiz(data);
       } catch (error) {
@@ -172,17 +172,26 @@ function GameBlock() {
           image
         </div> */}
         <div className="idk" style={{ padding: '15px' }}>
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          >
-            {Object.entries(currentQuestion.answers).map(([key, value]) => (
-              <Grid xs={6} key={key}>
-                <Item>{value}</Item>
-              </Grid>
-            ))}
-          </Grid>
+        <Grid
+    container
+    rowSpacing={1}
+    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+>
+    {Object.entries(currentQuestion.answers).map(([key, value], index) => {
+        // Define an array of colors
+        const colors = ['red', '#4591FF', '#FFB829', '#7DFFBB'];
+        
+        // Assign each color to an item based on its index
+        const itemStyle = {backgroundColor: colors[index]};
+        
+        return (
+            <Grid xs={6} key={key}>
+                <Item style={itemStyle}>{value}</Item>
+            </Grid>
+        );
+    })}
+</Grid>
+
         </div>
         <div
           className="timer-wrapper"
