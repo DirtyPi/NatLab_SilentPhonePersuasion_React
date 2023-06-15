@@ -47,11 +47,11 @@ function PlayerQuiz() {
     }
   }, []); // Run the effect only once on component mount
 
-  // Update localStorage and the local variable
-  const updateVariable = (value) => {
-    localStorage.setItem('myVariable', value);
-    setMyVariable(value);
-  };
+  // // Update localStorage and the local variable
+  // const updateVariable = (value) => {
+  //   localStorage.setItem('myVariable', value);
+  //   setMyVariable(value);
+  // };
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -78,13 +78,13 @@ function PlayerQuiz() {
             </div>
           );
     }
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      }));
+    // const Item = styled(Paper)(({ theme }) => ({
+    //     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    //     ...theme.typography.body2,
+    //     padding: theme.spacing(1),
+    //     textAlign: 'center',
+    //     color: theme.palette.text.secondary,
+    //   }));
 
      
     

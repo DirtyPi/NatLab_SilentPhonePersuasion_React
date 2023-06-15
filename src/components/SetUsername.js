@@ -236,7 +236,7 @@ const Username = () => {
           <button
             type="submit"
             className={isButtonClickable ? 'setUsernameBtn active' : 'setUsernameBtn'}
-            ref={submitButtonRef} 
+            // ref={submitButtonRef} 
           >
             <a href="/quizplayer" style={{ textDecoration: 'none', color: 'black', textDecoration: 'none' }}>
               Submit
