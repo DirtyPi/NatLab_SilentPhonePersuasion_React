@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import sound from '../sound/Signal.mp3'
+//import sound from '../sound/Signal.mp3'
 import baseUrl from "../baseUrl";
 function PlayerQuiz() {
 

@@ -104,7 +104,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate,useLocation  } from 'react-router-dom';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import '../components/componentsCSS/setUsername.css';
 import popSound from '../sound/Signal.mp3';
 import popSoundOGG from '../sound/Signal.ogg';
