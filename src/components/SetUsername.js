@@ -138,8 +138,8 @@ const Username = () => {
     const fetchQuiz = async () => {
       try {
         const response = await fetch(`${baseUrl}/api/active/quiz/code/${quizId}`);
-        const data = await response.json();
-        setQuiz(data);
+         quiz = await response.json();
+        setQuiz(quiz);
       } catch (error) {
         console.log(error);
       }
