@@ -19,7 +19,7 @@ const ACC = () => {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`${baseUrl}/api/active/quiz/quizid/${quizId}`);
+        const response = await fetch(`/api/active/quiz/quizid/${quizId}`);
         const data = await response.json();
         setQuiz(data);
       } catch (error) {
@@ -30,47 +30,13 @@ const ACC = () => {
     fetchQuiz();
   }, [quizId]);
 
-  // Redirect to the Quiz Game page after 60 seconds
-  // useEffect(() => {
-  //   const redirectTimeout = setTimeout(async () => {
-  //     navigate(`/quizgame/${quizId}`);
-  //     if (quiz) {
-  //       try {
-  //         // Make the API call to update the gameStarted field
-  //         const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
-  //           method: 'PUT',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //         });
-      
-  //         if (response.ok) {
-  //           // API call was successful
-  //           setQuiz((prevQuiz) => ({
-  //             ...prevQuiz,
-  //             gameStarted: true,
-  //           }));
-  //         } else {
-  //           // API call failed
-  //           console.error('Failed to update gameStarted field');
-  //         }
-  //       } catch (error) {
-  //         console.error('Failed to call the API:', error);
-  //       }
-  //     }
-  //   }, 60000);
-
-  //   return () => {
-  //     clearTimeout(redirectTimeout);
-  //   };
-  // }, [navigate, quizId]);
-
 
   useEffect(() => {
     const redirectTimeout = setTimeout(async () => {
       navigate(`/quizgame/${quizId}`);
       if (quiz) {
         try {
+          sessionStorage.setItem('ActiveQuiz', quiz.code);
           // Make the API call to update the gameStarted field
           const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
             method: 'PUT',
@@ -101,30 +67,30 @@ const ACC = () => {
   }, [navigate, quizId, quiz]);
   
  // Function to start the game by calling the API
-//  const startGame = async () => {
-//   try {
-//     // Make the API call to update the gameStarted field
-//     const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     });
+ const startGame = async () => {
+  try {
+    // Make the API call to update the gameStarted field
+    const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-//     if (response.ok) {
-//       // API call was successful
-//       setQuiz((prevQuiz) => ({
-//         ...prevQuiz,
-//         gameStarted: true,
-//       }));
-//     } else {
-//       // API call failed
-//       console.error('Failed to update gameStarted field');
-//     }
-//   } catch (error) {
-//     console.error('Failed to call the API:', error);
-//   }
-// };
+    if (response.ok) {
+      // API call was successful
+      setQuiz((prevQuiz) => ({
+        ...prevQuiz,
+        gameStarted: true,
+      }));
+    } else {
+      // API call failed
+      console.error('Failed to update gameStarted field');
+    }
+  } catch (error) {
+    console.error('Failed to call the API:', error);
+  }
+};
   // Render function for the countdown timer
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
@@ -186,14 +152,14 @@ const ACC = () => {
         </div>
        
       </div>
-{/* 
+
       Join code
       <div className="join-text" style={{ display: 'flex', justifyContent: 'center' }}>
         <h2 style={{ color: 'white' }}>Or type code to enter the quiz game.</h2>
       </div>
       <div className="join-code" style={{ display: 'flex', justifyContent: 'center', fontSize: '30px' }}>
         <h1 style={{ color: 'white' }}>{quiz.code}</h1>
-      </div> */}
+      </div>
     </div>
   );
 };

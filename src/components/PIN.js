@@ -1,87 +1,79 @@
-
-
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import baseUrl from "../baseUrl";
+//import baseUrl from "../baseUrl";
 import '../components/componentsCSS/PIN.css';
 
 const PIN = () => {
   const navigate = useNavigate();
   const inputsRef = useRef([]);
-  const buttonRef = useRef(null);
   const [code, setCode] = useState("");
-  const [quizzes, setQuizzes] = useState([]);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  
   useEffect(() => {
     inputsRef.current[0].focus();
   }, []);
-  useEffect(() => {
-    const fetchQuizzes = async () => {
-      const response = await fetch(`${baseUrl}/api/quiz`, cors());
-      const json = await response.json();
-
-      if (response.ok) {
-        setQuizzes(json);
-      }
-    };
-
-    fetchQuizzes();
-  }, []);
-
+  
   const handleInput = (e, currentIndex) => {
     const currentInput = inputsRef.current[currentIndex];
     const nextInput = inputsRef.current[currentIndex + 1];
-    const prevInput = inputsRef.current[currentIndex - 1];
-
-    if (currentInput.value.length > 1) {
+    let inputValue = e.target.value;
+  
+    // Convert to uppercase
+    inputValue = inputValue.toUpperCase();
+    currentInput.value = inputValue;
+  
+    if (inputValue.length > 1) {
       currentInput.value = "";
       return;
     }
-
-    if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+  
+    if (nextInput && inputValue !== "") {
       nextInput.removeAttribute("disabled");
       nextInput.focus();
     }
-
+  
     if (e.key === "Backspace") {
-      inputsRef.current.forEach((input, index) => {
-        if (currentIndex <= index && prevInput) {
-          input.setAttribute("disabled", true);
-          input.value = "";
-          prevInput.focus();
-        }
-      });
+      currentInput.value = "";
+      if (currentIndex > 0) {
+        inputsRef.current[currentIndex - 1].focus();
+      }
     }
-
-    if (!inputsRef.current[3].hasAttribute("disabled") && inputsRef.current[3].value !== "") {
-      buttonRef.current.classList.add("active");
+  
+    const isAllInputsFilled = inputsRef.current.every(input => input.value !== '');
+    setIsButtonDisabled(!isAllInputsFilled);
+    if (isAllInputsFilled) {
       setCode(inputsRef.current.map((input) => input.value).join(""));
-    } else {
-      buttonRef.current.classList.remove("active");
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    if (isButtonDisabled) {
+      console.log("Button is disabled, can't submit");
+      return;
+    }
+  
     try {
-      const response = await axios.get(`${baseUrl}/api/code/${code}`);
+      const response = await axios.get(`/api/active/quiz/code/${code}`);
       const activeQuiz = response.data;
       // Redirect to the appropriate page based on the active quiz data
       if (activeQuiz) {
-        navigate("/quiz");
+        navigate(`/SetUsername/${code}`);
       } else {
         // Incorrect code handling
         console.log("Incorrect code");
       }
     } catch (error) {
       // API error handling
-      console.log("API error:", error);
+      console.error("API error:", error);
     }
   };
-
+  
   return (
     <div className="containerPin">
-      <form onSubmit={handleSubmit}>
+      <form >
         <div className="input-field">
           <input
             type="text"
@@ -111,7 +103,7 @@ const PIN = () => {
             onKeyUp={(e) => handleInput(e, 3)}
           />
         </div>
-        <button className="pinbutton" type="submit" disabled ref={buttonRef}>
+        <button className="pinbutton" type="submit" onClick={handleSubmit} disabled={isButtonDisabled}>
           Verify
         </button>
       </form>

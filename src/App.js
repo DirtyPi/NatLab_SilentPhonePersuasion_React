@@ -15,7 +15,9 @@ import PlayQuiz from './pages/playerQuiz';
 import SetUsername from './pages/SetUsernamePAge';
 import QuizList from './pages/QuizList'
 import CreateQuiz from './pages/CreateQuizPage';
-
+import LobbyPage from './pages/LobbyPage';
+import Top3 from './pages/Top3Page';
+import FinalUserPage from './pages/FinalUserPage';
 function App() {
   return (
     
@@ -40,7 +42,7 @@ function App() {
         />
 
          <Route
-        path='/quizplayer/'
+        path='/quizplayer/:code/:id'
         element={<PlayQuiz/>}
         />
 
@@ -58,6 +60,21 @@ function App() {
         <Route
         path='/CreateQuiz'
         element={<CreateQuiz/>}
+        />
+
+        <Route
+        path='/Lobby/:code'
+        element={<LobbyPage/>}
+        />
+
+        <Route
+        path='/Top3/:code'
+        element={<Top3/>}
+        />
+
+        <Route
+        path='/result'
+        element={<FinalUserPage/>}
         />
 
       </Routes>
