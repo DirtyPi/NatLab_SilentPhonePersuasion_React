@@ -48,7 +48,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
-import baseUrl from "../baseUrl";
+const baseUrl = 'https://nat-game.azurewebsites.net';
 import cors from 'cors';
 
 function QuizList() {
@@ -58,7 +58,7 @@ function QuizList() {
 
     useEffect(() => {
         const fetchQuizzes = async () => {
-            const response = await fetch(`/api/quiz`);
+            const response = await fetch(`${baseUrl}/api/quiz`);
             const json = await response.json();
 
             if (response.ok) {
@@ -74,7 +74,7 @@ function QuizList() {
         setButtonDisabled(true);
 
         // Call the API to start the quiz
-        fetch(`/api/active/quiz/${quizId}/activate`, { method: 'POST' })
+        fetch(`${baseUrl}/api/active/quiz/${quizId}/activate`, { method: 'POST' })
             .then(response => response.json())
             .then(data => {
                 console.log(data);
