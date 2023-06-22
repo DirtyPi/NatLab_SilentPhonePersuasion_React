@@ -114,7 +114,7 @@ const handleAnswerClick = debounce(async (answerKey) => {
   const playerId = sessionStorage.getItem('userID');
   const url = `${baseUrl}/api/active/quiz/aq/${aquiz._id}/p/${playerId}/qq/${currentQuestion._id}/answer`;
   const body = { answer: answerKey };
-  console.log("Active Quiz" + aquiz._id + "Player:" + playerId + "Question id:" + currentQuestion._id);
+ // console.log("Active Quiz" + aquiz._id + "Player:" + playerId + "Question id:" + currentQuestion._id);
   try {
       const response = await fetch(url, {
           method: 'POST',
@@ -127,7 +127,7 @@ const handleAnswerClick = debounce(async (answerKey) => {
           throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data); // This will log the response from the server
+     // console.log(data); // This will log the response from the server
   } catch (error) {
       console.error('There was an error!', error);
   }
