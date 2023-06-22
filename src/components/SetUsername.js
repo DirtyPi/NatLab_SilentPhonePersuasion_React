@@ -111,7 +111,7 @@ const handleSubmit = debounce(async (event) => {
   const handlePopupClose = () => {
     const sound = new Howl({
       src: [popSound, popSoundOGG],
-      volume: 0.5,
+      volume: 2.5,
     });
     sound.play();
 
