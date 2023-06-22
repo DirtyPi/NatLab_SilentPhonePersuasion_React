@@ -48,14 +48,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
-const baseUrl = 'https://nat-game.azurewebsites.net';
+
 import cors from 'cors';
 
 function QuizList() {
     const navigate = useNavigate();
     const [quizzes, setQuizzes] = useState([]);
     const [buttonDisabled, setButtonDisabled] = useState(false); // New state variable
-
+    const baseUrl = 'https://nat-game.azurewebsites.net';
     useEffect(() => {
         const fetchQuizzes = async () => {
             const response = await fetch(`${baseUrl}/api/quiz`);
