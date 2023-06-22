@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import baseUrl from "../baseUrl";
+//import baseUrl from "../baseUrl";
 
 const QuizForm = () => {
   const [quizTitle, setQuizTitle] = useState('');
   const [questions, setQuestions] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const baseUrl = 'https://nat-game.azurewebsites.net';
 
   const handleTitleChange = (event) => {
     setQuizTitle(event.target.value);

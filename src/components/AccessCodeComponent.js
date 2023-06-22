@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import QRCode from 'react-qr-code';
-import baseUrl from "../baseUrl";
+//import baseUrl from "../baseUrl";
 const ACC = () => {
   // Hook to manage navigation
   const navigate = useNavigate();
@@ -15,11 +15,13 @@ const ACC = () => {
   // State to store the quiz data
   const [quiz, setQuiz] = useState(null);
 
+  const baseUrl = 'https://nat-game.azurewebsites.net';
+
   // Fetch the quiz data based on the quizId
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/active/quiz/quizid/${quizId}`);
+        const response = await fetch(`${baseUrl}/api/active/quiz/quizid/${quizId}`);
         const data = await response.json();
         setQuiz(data);
       } catch (error) {
@@ -38,7 +40,7 @@ const ACC = () => {
         try {
           sessionStorage.setItem('ActiveQuiz', quiz.code);
           // Make the API call to update the gameStarted field
-          const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
+          const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ const ACC = () => {
  const startGame = async () => {
   try {
     // Make the API call to update the gameStarted field
-    const response = await fetch(`/api/active/quiz/${quiz._id}/start-game`, {
+    const response = await fetch(`${baseUrl}/api/active/quiz/${quiz._id}/start-game`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ function Leaderboard() {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const baseUrl = 'https://nat-game.azurewebsites.net';
   useEffect(() => {
     // Retrieve the quiz code from local storage
     const quizCode = sessionStorage.getItem('ActiveQuiz');
@@ -16,7 +16,7 @@ function Leaderboard() {
     }
 
     // Make a GET request to the server
-    fetch(`/api/active/quiz/top-players/${quizCode}`)
+    fetch(`${baseUrl}/api/active/quiz/top-players/${quizCode}`)
       .then(response => {
         // Check if the request was successful
         if (!response.ok) {

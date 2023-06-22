@@ -21,7 +21,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function PlayerQuiz() {
   const { quizId } = useParams();
   const activeQuiz = sessionStorage.getItem('ActiveQuiz');
-  
+  const baseUrl = 'https://nat-game.azurewebsites.net';
   const [aquiz, setAquiz] = useState(null);
   const [aquizcode, setAquizcode] = useState(activeQuiz);
   const [Quiz, setQuiz] = useState(null);
@@ -30,7 +30,7 @@ function PlayerQuiz() {
   useEffect(() => {
     const fetchAQuiz = async () => {
       try {
-        const response = await fetch(`/api/active/quiz/code/${aquizcode}`);
+        const response = await fetch(`${baseUrl}/api/active/quiz/code/${aquizcode}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -49,7 +49,7 @@ function PlayerQuiz() {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const response = await fetch(`/api/quiz/${aquiz?.quiz}`);
+        const response = await fetch(`${baseUrl}/api/quiz/${aquiz?.quiz}`);
         const data = await response.json();
         setQuiz(data);
        
@@ -105,33 +105,10 @@ function PlayerQuiz() {
     return <div style={{background: 'white'}}>Loading...</div>;
   }
   const currentQuestion = Quiz.questions[currentQuestionIndex];
- // console.log(currentQuestion);
 
-//   const handleAnswerClick = async (answerKey) => {
-//     const playerId = sessionStorage.getItem('userID');
-//     const url = `/api/active/quiz/aq/${aquiz._id}/p/${playerId}/qq/${currentQuestion._id}/answer`;
-//     const body = { answer: answerKey };
-//     console.log("Active Quiz" + aquiz._id + "Player:" + playerId + "Question id:" + currentQuestion._id);
-//     try {
-//         const response = await fetch(url, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(body),
-//         });
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         const data = await response.json();
-//         console.log(data); // This will log the response from the server
-//     } catch (error) {
-//         console.error('There was an error!', error);
-//     }
-// };
 const handleAnswerClick = debounce(async (answerKey) => {
   const playerId = sessionStorage.getItem('userID');
-  const url = `/api/active/quiz/aq/${aquiz._id}/p/${playerId}/qq/${currentQuestion._id}/answer`;
+  const url = `${baseUrl}/api/active/quiz/aq/${aquiz._id}/p/${playerId}/qq/${currentQuestion._id}/answer`;
   const body = { answer: answerKey };
   console.log("Active Quiz" + aquiz._id + "Player:" + playerId + "Question id:" + currentQuestion._id);
   try {

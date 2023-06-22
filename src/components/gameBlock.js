@@ -20,13 +20,7 @@ const renderTime = ({ remainingTime }) => {
   );
 };
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -49,10 +43,10 @@ function GameBlock() {
   const timerDuration = 30; // Initial timer duration
   const { quizId } = useParams();
   const navigate = useNavigate(); 
-
+  const baseUrl = 'https://nat-game.azurewebsites.net';
   const fetchQuiz = async () => {
     try {
-      const response = await fetch(`/api/quiz/${quizId}`);
+      const response = await fetch(`${baseUrl}/api/quiz/${quizId}`);
       const data = await response.json();
       setQuiz(data);
     } catch (error) {
@@ -62,7 +56,7 @@ function GameBlock() {
 
   const fetchPlayers = async () => {
     try {
-      const response = await fetch(`/api/active/quiz/${quizId}/players`);
+      const response = await fetch(`${baseUrl}/api/active/quiz/${quizId}/players`);
       const data = await response.json();
       setPlayers(data);
     } catch (error) {

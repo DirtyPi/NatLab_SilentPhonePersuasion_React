@@ -9,7 +9,7 @@ const PIN = () => {
   const inputsRef = useRef([]);
   const [code, setCode] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  
+  const baseUrl = 'https://nat-game.azurewebsites.net';
   useEffect(() => {
     inputsRef.current[0].focus();
   }, []);
@@ -56,7 +56,7 @@ const PIN = () => {
     }
   
     try {
-      const response = await axios.get(`/api/active/quiz/code/${code}`);
+      const response = await axios.get(`${baseUrl}/api/active/quiz/code/${code}`);
       const activeQuiz = response.data;
       // Redirect to the appropriate page based on the active quiz data
       if (activeQuiz) {

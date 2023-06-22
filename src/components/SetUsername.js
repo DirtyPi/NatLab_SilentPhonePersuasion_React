@@ -12,7 +12,7 @@ import { debounce } from 'lodash';
 const Username = () => {
   const [username, setUsername] = useState('');
   const [isButtonClickable, setIsButtonClickable] = useState(false);
-  
+  const baseUrl = 'https://nat-game.azurewebsites.net';  
   const usernameInputRef = useRef(null);
   //const submitButtonRef = useRef(null);
 
@@ -36,7 +36,7 @@ const Username = () => {
 useEffect(() => {
   const fetchQuiz = async () => {
     try {
-      const response = await fetch(`/api/active/quiz/code/${quizId}`);
+      const response = await fetch(`${baseUrl}/api/active/quiz/code/${quizId}`);
       const data = await response.json();
       setQuiz(data);
     } catch (error) {
@@ -77,36 +77,7 @@ useEffect(() => {
     setUsername(event.target.value);
   };
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     if (username.length > 3) {
-//       sessionStorage.setItem('username', username);
-//   sessionStorage.setItem('ActiveQuiz', secondLastParam);
-//   console.log(`Username: ${username}`);
-//   console.log(`ActiveQuiz: ${secondLastParam}`);
-//  // console.log(`ActiveQuiz (from storage, right after setting): ${sessionStorage.getItem('ActiveQuiz')}`);
-  
-//       try {
-//         const response = await fetch(`/api/active/quiz/signin/${secondLastParam}`, {
-//           method: 'POST',
-//           body: JSON.stringify({ username }),
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//         });
-  
-//         if (response.ok) {
-//           console.log(response);
-//           await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second
-//           navigate(`/Lobby/${secondLastParam}`);
-//         } else {
-//           console.log('API Error:', response.status);
-//         }
-//       } catch (error) {
-//         console.log('Network Error:', error);
-//       }
-//     }
-//   };
+
 const handleSubmit = debounce(async (event) => {
   event.preventDefault();
   if (username.length > 3) {
@@ -116,7 +87,7 @@ const handleSubmit = debounce(async (event) => {
     console.log(`ActiveQuiz: ${secondLastParam}`);
 
     try {
-      const response = await fetch(`/api/active/quiz/signin/${secondLastParam}`, {
+      const response = await fetch(`${baseUrl}/api/active/quiz/signin/${secondLastParam}`, {
         method: 'POST',
         body: JSON.stringify({ username }),
         headers: {

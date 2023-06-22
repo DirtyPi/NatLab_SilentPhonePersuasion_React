@@ -7,6 +7,7 @@ function Lobby() {
   const [quizItSelf, setQuizItSelf] = useState(null);
   const navigate = useNavigate(); // hook from react-router-dom
   const [user, setUser] = useState(null);
+  const baseUrl = 'https://nat-game.azurewebsites.net';
   useEffect(() => {
     // Retrieve the ActiveQuiz data from sessionStorage
     const activeQuizData = sessionStorage.getItem('ActiveQuiz');
@@ -15,7 +16,7 @@ function Lobby() {
       // Fetch the active quiz data based on the quizId
       const fetchQuiz = async () => {
         try {
-          const response = await fetch(`/api/active/quiz/code/${activeQuizData}`);
+          const response = await fetch(`${baseUrl}/api/active/quiz/code/${activeQuizData}`);
           const data = await response.json();
           setQuiz(data);
         } catch (error) {
@@ -34,9 +35,9 @@ function Lobby() {
       const username = sessionStorage.getItem('username');
   
       const fetchUser = async () => {
-        console.log('Fetching user:', activeQuiz); // Debugging: log activeQuiz before making the request
+        //console.log('Fetching user:', activeQuiz); // Debugging: log activeQuiz before making the request
         try {
-          const response = await fetch(`/api/active/quiz/${activeQuiz._id}/user/${username}`);
+          const response = await fetch(`${baseUrl}/api/active/quiz/${activeQuiz._id}/user/${username}`);
           const data = await response.json();
           //console.log('Fetched user123:', data); // Debugging: log the fetched data
           sessionStorage.setItem('userID', data.userID); // Save userID directly
@@ -56,7 +57,7 @@ function Lobby() {
     if (quiz) {
       const fetchQuizItSelf = async () => {
         try {
-          const response = await fetch(`/api/quiz/${quiz.quiz}`);
+          const response = await fetch(`${baseUrl}/api/quiz/${quiz.quiz}`);
           const data = await response.json();
           setQuizItSelf(data);
         } catch (error) {

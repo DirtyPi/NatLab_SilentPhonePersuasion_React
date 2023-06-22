@@ -4,10 +4,8 @@ const Navbar = () => {
     return (
         <header>
             <div className="container">
-                <Link to='/'>
-                    
+                <Link to='/'>    
                 <img src={image} width="80" height="80" alt="Logo" />
-
                 </Link>
             </div>
         </header>
