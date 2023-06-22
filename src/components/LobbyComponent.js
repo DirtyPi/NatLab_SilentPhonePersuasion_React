@@ -73,7 +73,7 @@ function Lobby() {
   useEffect(() => {
     const checkStartTime = setInterval(() => {
       if (new Date().getTime() > new Date(quiz?.startTime).getTime()) {
-        navigate(`https://nat-lab-silent-phone-persuasion-react-git-main-dirtypi.vercel.app/quizplayer/${quiz.code}/${quiz.quiz}`); // redirect to the new component
+        navigate(`/quizplayer/${quiz.code}/${quiz.quiz}`); // redirect to the new component
       }
     }, 1000); // check every second
 
@@ -89,7 +89,7 @@ function Lobby() {
         {quizItSelf && (
           <span>
           Quiz Title: {quizItSelf.name}
-          The game is about to start!
+          . The game is about to start!
           </span>
         
         )}
