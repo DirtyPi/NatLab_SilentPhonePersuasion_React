@@ -70,18 +70,30 @@ function Lobby() {
   }, [quiz]);
 
   // Check if the current time is past the start time of the quiz
+  // useEffect(() => {
+  //   const checkStartTime = setInterval(() => {
+  //     if (quiz && new Date().getTime() > new Date(quiz.startTime).getTime()) {
+  //       navigate(`/quizplayer/${quiz.code}/${quiz.quiz}`);
+  //       clearInterval(checkStartTime); // clear the interval when navigating away
+  //     }
+  //   }, 1000); // check every second
+  
+  //   // Clean up the interval when the component is unmounted
+  //   return () => clearInterval(checkStartTime);
+  // }, [quiz, navigate]);
   useEffect(() => {
     const checkStartTime = setInterval(() => {
-      if (quiz && new Date().getTime() > new Date(quiz.startTime).getTime()) {
+      const currentTime = new Date().getTime();
+      const startTime = new Date(quiz?.startTime).getTime();
+
+      if (currentTime > startTime) {
         navigate(`/quizplayer/${quiz.code}/${quiz.quiz}`);
-        clearInterval(checkStartTime); // clear the interval when navigating away
+        clearInterval(checkStartTime); // Stop the interval once redirected
       }
-    }, 1000); // check every second
-  
-    // Clean up the interval when the component is unmounted
+    }, 1000); // Check every second
+
     return () => clearInterval(checkStartTime);
   }, [quiz, navigate]);
-
 
   return (
     <div style={{ backgroundColor: 'white' }}>
