@@ -74,7 +74,7 @@ function Lobby() {
     const checkStartTime = setInterval(() => {
       if (new Date().getTime() > new Date(quiz.startTime).getTime()) {
         console.log("quiz starts at:" + quiz.startTime)
-        navigate(`https://nat-lab-silent-phone-persuasion-react-git-main-dirtypi.vercel.app/quizplayer/${quiz.code}/${quiz.quiz}`); // redirect to the new component
+        navigate(`/quizplayer/${quiz.code}/${quiz.quiz}`); // redirect to the new component
       }
     }, 1000); // check every second
 
