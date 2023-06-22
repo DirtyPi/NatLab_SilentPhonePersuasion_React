@@ -150,7 +150,7 @@ const ACC = () => {
           <h2 style={{ color: 'white' }}>Scan me</h2>
         </div>
         <div style={{ background:'white', padding:'15px' }}>
-           <QRCode size={170} value={`SetUsername/${quiz.code}`} />
+           <QRCode size={170} value={`https://nat-lab-silent-phone-persuasion-react-git-main-dirtypi.vercel.app/SetUsername/${quiz.code}`} />
         </div>
        
       </div>
