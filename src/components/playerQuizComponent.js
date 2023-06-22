@@ -16,6 +16,10 @@ const Item = styled(Paper)(({ theme }) => ({
   //  width: '600px',
   // height: '250px', 
   color: 'black',
+  transition: 'transform .2s', 
+  '&:active': {
+    transform: 'scale(0.95)' 
+  },
 }));
 
 function PlayerQuiz() {
@@ -70,7 +74,7 @@ function PlayerQuiz() {
     } else {
       // Redirect to another page when there are no more questions
       // You can replace '/result' with the desired URL
-      window.location.href = '/result';
+      window.location.href = 'https://nat-lab-silent-phone-persuasion-react-git-main-dirtypi.vercel.app/result';
     }
 
     setTimerKey(Date.now()); // Reset the timer by updating timerKey
